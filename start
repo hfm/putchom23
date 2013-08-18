@@ -1,0 +1,31 @@
+#!/bin/sh
+
+check_volume()
+{
+  while true; do
+    cat << "EOF"
+音が鳴ります。ボリュームを入れてください [y/N]:
+EOF
+
+    read CHK_VOL
+    case ${CHK_VOL} in
+      Y|y)
+        main
+        break
+        ;;
+      N|n)
+        return 1
+        ;;
+      *)
+        ;;
+    esac
+  done
+}
+
+main()
+{
+  ./song
+  ./message
+}
+
+check_volume
